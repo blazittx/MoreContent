@@ -1,47 +1,147 @@
 ﻿using BepInEx;
 using HarmonyLib;
-using System.Collections.Generic;
-using System.Reflection.Emit; // Required for working with OpCodes
-using UnityEngine; // Necessary for Debug.Log
-using System.Linq; // Add this line here
+using System;
 
-[BepInPlugin("com.yourdomain.MoreContent", "More Content", "1.0.0")]
+using UnityEngine;
+using DefaultNamespace;
+using System.Reflection;
+using TMPro;
+using UnityEngine.UI;
+using System.Reflection.Emit;
+using System.Collections.Generic;
+using System.Linq;
+
+
+[BepInPlugin("com.yourdomain.MoreCustomization", "More Customization", "1.0.0")]
 public class MoreContentPlugin : BaseUnityPlugin
 {
+    private const string modGUID = "x001.MoreCustomization";
+    private const string modName = "MoreCustomization";
+    private const string modVersion = "1.0.0";
+
+    private readonly Harmony harmony = new Harmony(modGUID);
+
     private void Awake()
     {
-        // Initialize Harmony
-        var harmony = new Harmony("com.yourdomain.MoreContent");
         harmony.PatchAll();
-        Debug.Log("MoreContent mod has been loaded and patches applied.");
+
+        Logger.LogInfo($"Plugin {modGUID} is loaded!");
     }
-}
 
-[HarmonyPatch(typeof(MainMenuHandler))]
-[HarmonyPatch("Start")]
-public static class MainMenuHandlerStartPatch
-{
-    static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+    [HarmonyPatch(typeof(PlayerCustomizer), "RunTerminal")]
+    public static class PlayerCustomizer_RunTerminal_Patch
     {
-        var codes = new List<CodeInstruction>(instructions);
-        bool found = false;
-
-        for (int i = 0; i < codes.Count; i++)
+        public static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
-            if (codes[i].opcode == OpCodes.Ldc_I4_4)
+            var codes = new List<CodeInstruction>(instructions);
+
+            for (int i = 0; i < codes.Count; i++)
             {
-                codes[i].opcode = OpCodes.Ldc_I4_8;
-                found = true;
-                Debug.Log("Transpiler found and changed max player count to 8.");
+                if (codes[i].opcode == OpCodes.Ldc_I4_3)
+                {
+                    codes[i].opcode = OpCodes.Ldc_I4;
+                    codes[i].operand = 128;
+                    break;
+                }
+            }
+
+            return codes.AsEnumerable();
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerCustomizer), "RunTerminal")]
+    public static class PlayerCustomizer_RunTerminal_Paste
+    {
+        [HarmonyPostfix]
+        public static void PostfixRunTerminal(PlayerCustomizer __instance)
+        {
+            // Check for Ctrl+V (paste) input
+            if (UnityInput.Current.GetKey(KeyCode.LeftControl) || UnityInput.Current.GetKey(KeyCode.RightControl) && UnityInput.Current.GetKey(KeyCode.V))
+            {
+                // Access clipboard text
+                string clipboardText = UnityEngine.GUIUtility.systemCopyBuffer; // This is now recognized
+
+                // Apply clipboard text
+                __instance.faceText.text = clipboardText; // Set the pasted text
+                Debug.Log($"Pasted text from clipboard: {clipboardText}");
+            }
+
+            if (__instance.faceText != null)
+            {
+                __instance.faceText.enableAutoSizing = true;
+                __instance.faceText.fontSizeMin = 10;
+                __instance.faceText.fontSizeMax = 40;
+
+                Debug.Log($"[PlayerCustomizer] Auto-sizing enabled. Min Size: {__instance.faceText.fontSizeMin}, Max Size: {__instance.faceText.fontSizeMax}");
             }
         }
+    }
 
-        if (!found)
+    [HarmonyPatch(typeof(PlayerCustomizer))]
+    public static class Patch_PlayerCustomizer
+    {
+        [HarmonyPatch("SetFaceText"), HarmonyPostfix]
+        public static void PostfixSetFaceText(ref PlayerCustomizer __instance, string text)
         {
-            Debug.LogWarning("Transpiler did not find the max player count value to change.");
-        }
+            if (__instance.playerInTerminal)
+            {
+                Debug.Log($"Patching SetFaceText with full text: {text}");
 
-        // AsEnumerable() is recognized with the System.Linq using directive
-        return codes.AsEnumerable();
+                __instance.faceText.text = text;
+                __instance.playerInTerminal.refs.visor.visorFaceText.text = text;
+
+                if (__instance.faceText != null)
+                {
+                    __instance.faceText.enableAutoSizing = true;
+                    __instance.faceText.fontSizeMin = 10;
+                    __instance.faceText.fontSizeMax = 40;
+
+                    Debug.Log($"[SetFaceText] Text auto-sized. Min: {__instance.faceText.fontSizeMin}, Max: {__instance.faceText.fontSizeMax}");
+                }
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerVisor), "RPCA_SetVisorText")]
+    public static class Patch_PlayerVisor
+    {
+        [HarmonyPrefix]
+        public static bool PrefixRPCA_SetVisorText(PlayerVisor __instance, ref string text)
+        {
+            // Assuming __instance has a public or accessible TextMeshProUGUI component named visorText
+            if (__instance.visorFaceText != null)
+            {
+                __instance.visorFaceText.text = text;
+                __instance.visorFaceText.enableAutoSizing = true;
+                __instance.visorFaceText.fontSizeMin = 10;
+                __instance.visorFaceText.fontSizeMax = 40;
+
+                Debug.Log($"[PlayerVisor] Adjusted text size for '{text}'. Min Font Size: {__instance.visorFaceText.fontSizeMin}, Max Font Size: {__instance.visorFaceText.fontSizeMax}");
+            }
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerCustomizer), "OnChangeFaceSize")]
+    public class PlayerCustomizer_OnChangeFaceSize_Patch
+    {
+        static bool Prefix(PlayerCustomizer __instance, bool smaller)
+        {
+            // Assuming there's a way to get the current size directly. You might need to adjust this.
+            float currentSize = __instance.faceText.transform.localScale.x;
+            float changeAmount = 0.05f; // Example step size for each button press
+
+            // Adjust the size up or down based on the button pressed
+            float newSize = smaller ? currentSize - changeAmount : currentSize + changeAmount;
+
+            // Directly set the new size
+            __instance.faceText.transform.localScale = new Vector3(newSize, newSize, 1f);
+
+            // Log for debugging
+            Debug.Log($"Adjusted face size to: {newSize}");
+
+            // Since we've directly set the size, skip the original method to prevent it from clamping the value
+            return false;
+        }
     }
 }
