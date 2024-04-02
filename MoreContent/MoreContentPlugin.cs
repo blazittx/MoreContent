@@ -229,6 +229,53 @@ public class MoreContentPlugin : BaseUnityPlugin
             return slider;
         }
 
+        [HarmonyPatch(typeof(PlayerCustomizer), "RPCA_PlayerLeftTerminal")]
+        public static class PlayerCustomizer_RPCA_PlayerLeftTerminal_Patch
+        {
+            static bool Prefix(PlayerCustomizer __instance, bool apply)
+            {
+                if (__instance.playerInTerminal == null)
+                {
+                    return false; // Skip original method if there's no player in terminal.
+                }
+
+                // Here you apply the custom color. Assuming headColor holds the color selected via your custom UI.
+                Color customColor = __instance.headColor.color;
+
+                if (apply)
+                {
+                    // Apply the custom color to the visor.
+                    __instance.playerInTerminal.refs.visor.ApplyVisorColor(customColor);
+
+                    // Save custom color (optional, depends on your implementation).
+                    SaveCustomColorToPlayerPrefs(customColor);
+
+                    // Assuming there's a mechanism to save other customizations and sync across clients.
+                    // Adjust as necessary.
+                    __instance.playerInTerminal.refs.visor.visorFaceText.text = __instance.faceText.text;
+                    __instance.playerInTerminal.data.isInCostomizeTerminal = false;
+                    // Update any necessary state here...
+                }
+                else
+                {
+                    // Revert to initial color if not applying.
+                    __instance.playerInTerminal.refs.visor.ApplyVisorColor(__instance.headColor.color);
+                }
+
+                __instance.playerInTerminal = null;
+
+                // Prevent the original method from executing since we've handled the logic.
+                return false;
+            }
+
+            private static void SaveCustomColorToPlayerPrefs(Color color)
+            {
+                // Convert color to a savable format (e.g., a string) and save it.
+                PlayerPrefs.SetString("CustomColor", ColorUtility.ToHtmlStringRGBA(color));
+                PlayerPrefs.Save();
+            }
+        }
+
         [HarmonyPostfix]
         [HarmonyPatch("SpawnColors")]
         public static void PostfixSpawnColors(PlayerCustomizer __instance)
@@ -252,73 +299,37 @@ public class MoreContentPlugin : BaseUnityPlugin
             }
         }
 
-
-        [HarmonyPatch(typeof(PlayerCustomizer), "RPCA_PickColor")]
-        public static class PlayerCustomizer_PickColor_Patch
-        {
-            static void Postfix(PlayerCustomizer __instance, int childNumber)
-            {
-                // Assuming that 'colorsRoot' has child objects that correspond to the colors.
-                Transform colorChild = __instance.colorsRoot.transform.GetChild(childNumber);
-                Color selectedColor = colorChild.GetComponent<ColorSelector>().color;
-
-                // Apply color change locally
-                __instance.headColor.color = selectedColor;
-
-                // Assuming that the PlayerVisor class has a method that applies the color change to the visor
-                PlayerVisor visor = __instance.playerInTerminal?.refs.visor;
-                if (visor != null)
-                {
-                    visor.ApplyVisorColor(selectedColor);
-                }
-
-                // Log for debugging
-                Debug.Log($"Color changed to: {selectedColor}");
-            }
-        }
-
         private static void UpdateColor(PlayerCustomizer customizer, Slider red, Slider green, Slider blue)
         {
+            // Create the new color from the slider values.
             Color newColor = new Color(red.value, green.value, blue.value);
-            Debug.Log($"Attempting to update color to: {newColor}, RGB({red.value}, {green.value}, {blue.value})");
 
-            // Update the head color locally
+            // Log the new color for debugging.
+            Debug.Log($"Updating color to: {newColor}, RGB({red.value}, {green.value}, {blue.value})");
+
+            // Update the head color locally.
             if (customizer.headColor != null)
             {
-                customizer.headColor.color = newColor; // Assuming headColor is a UI component that can have its color changed directly
-                Debug.Log("Updated head color locally.");
+                customizer.headColor.color = newColor;
+                Debug.Log("Head color updated locally.");
             }
             else
             {
                 Debug.LogError("Head color component not found.");
+                return; // Exit if the head color component isn't found.
             }
 
-            // Access the visor and update its color locally
-            PlayerVisor visor = customizer.playerInTerminal?.refs.visor;
-            if (visor != null && visor.visorRenderer != null)
+            // Assuming your game's logic directly applies the RGB color to the visor.
+            if (customizer.playerInTerminal != null)
             {
-                // Convert color to HSV since your visor color seems to be based on hue.
-                Color.RGBToHSV(newColor, out float h, out _, out _);
-                Color visorColor = Color.HSVToRGB(h, 1, 1); // Create the color from the HSV value
-                visor.visorRenderer.materials[visor.visorMaterialIndex].color = visorColor; // Apply it to the visor material
-                Debug.Log("Updated visor color locally.");
+                customizer.playerInTerminal.refs.visor.ApplyVisorColor(newColor);
+                Debug.Log("Visor color updated locally.");
             }
             else
             {
-                Debug.LogError("Visor component or renderer not found.");
-            }
-
-            // Send the color update to all clients via RPC
-            var photonView = customizer.GetComponent<PhotonView>();
-            if (photonView != null)
-            {
-                photonView.RPC("RPC_UpdatePlayerColor", RpcTarget.AllBuffered, newColor.r, newColor.g, newColor.b);
-                Debug.Log("Sent RPC to update player color.");
-            }
-            else
-            {
-                Debug.LogError("No PhotonView found on PlayerCustomizer GameObject.");
+                Debug.LogError("Player in terminal not found.");
             }
         }
+
     }
 }

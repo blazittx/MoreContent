@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\blaze\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj": {}
+    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj": {}
   },
   "projects": {
-    "C:\\Users\\blaze\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj": {
+    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\blaze\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
+        "projectUniqueName": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
         "projectName": "MoreCustomization",
-        "projectPath": "C:\\Users\\blaze\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
-        "packagesPath": "C:\\Users\\blaze\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\blaze\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\obj\\",
+        "projectPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
+        "packagesPath": "C:\\Users\\info\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\blaze\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\info\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net472"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -37,15 +39,7 @@
       "frameworks": {
         "net472": {
           "targetAlias": "net472",
-          "dependencies": {
-            "Microsoft.NETFramework.ReferenceAssemblies": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[1.0.3, )",
-              "autoReferenced": true
-            }
-          },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

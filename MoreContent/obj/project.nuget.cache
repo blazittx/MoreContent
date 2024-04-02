@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rYn2SZQARuqxL2vMvg/Kjbw4mFcHPZjYWtDQFK9cXhZDYAzxBEd8JHleqW9DHskTEai55b3dNIAJk1ZQG9envA==",
+  "dgSpecHash": "AwR8KE6YH0DKtjK2kISPy0jdz8CCTPQIYUYqoxtrDjTMbh3FZNXYvpOHt2VEtl82mw8bd1SBvZtvDNAH4W9rkA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\blaze\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\blaze\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.3\\microsoft.netframework.referenceassemblies.1.0.3.nupkg.sha512",
-    "C:\\Users\\blaze\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net472\\1.0.3\\microsoft.netframework.referenceassemblies.net472.1.0.3.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
