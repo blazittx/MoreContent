@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreContent.csproj",
-      "projectName": "MoreContent",
-      "projectPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreContent.csproj",
+      "projectUniqueName": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
+      "projectName": "MoreCustomization",
+      "projectPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
       "packagesPath": "C:\\Users\\info\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\obj\\",
       "projectStyle": "PackageReference",
