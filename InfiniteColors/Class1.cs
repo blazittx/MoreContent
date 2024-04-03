@@ -29,8 +29,6 @@ public class Class1 : BaseUnityPlugin
         Logger.LogInfo($"Plugin {modGUID} is loaded!");
     }
 
-//NEW COLORS
-
     [HarmonyPatch(typeof(PlayerCustomizer))]
     public static class PlayerCustomizer_AddColorPicker_Patch
     {

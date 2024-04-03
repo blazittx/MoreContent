@@ -1,25 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.002.0
+VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreCustomization", "MoreContent\MoreCustomization.csproj", "{5060AAF6-4744-403C-8544-8C93A8C8ADD3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceCustomization", "FaceCustomization\FaceCustomization.csproj", "{11084AFE-182C-45C4-A46A-A9C529719A7E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfiniteColors", "InfiniteColors\InfiniteColors.csproj", "{3D66719D-C05D-4274-AEBA-E58B7D2EBA21}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C2341091-5FB0-4D35-B82B-5451784A8915}
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11084AFE-182C-45C4-A46A-A9C529719A7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11084AFE-182C-45C4-A46A-A9C529719A7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11084AFE-182C-45C4-A46A-A9C529719A7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11084AFE-182C-45C4-A46A-A9C529719A7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D66719D-C05D-4274-AEBA-E58B7D2EBA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D66719D-C05D-4274-AEBA-E58B7D2EBA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D66719D-C05D-4274-AEBA-E58B7D2EBA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D66719D-C05D-4274-AEBA-E58B7D2EBA21}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

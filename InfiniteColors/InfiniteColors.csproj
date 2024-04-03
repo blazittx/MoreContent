@@ -62,4 +62,9 @@
     <!-- Add similar lines for any other specific Unity modules or DLLs you need -->
   </ItemGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="copy /Y &quot;$(TargetDir)$(TargetFileName)&quot; &quot;D:\SteamLibrary\steamapps\common\Content Warning\BepInEx\plugins\$(TargetFileName)&quot;" />
+</Target>
+
+
 </Project>

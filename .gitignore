@@ -6,3 +6,5 @@
 !**/FaceCustomization.dll
 
 
+dotnet sln MoreContent.sln add ./FaceCustomization/FaceCustomization.csproj
+dotnet sln MoreContent.sln add ./InfiniteColors/InfiniteColors.csproj
