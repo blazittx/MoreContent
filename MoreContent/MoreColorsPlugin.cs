@@ -13,11 +13,11 @@ using System.Linq;
 using Photon.Pun;
 
 
-[BepInPlugin("com.yourdomain.MoreCustomization", "More Customization", "1.0.0")]
-public class MoreContentPlugin : BaseUnityPlugin
+[BepInPlugin("com.yourdomain.MoreColors", "More Colors", "1.0.0")]
+public class MoreColorsPlugin : BaseUnityPlugin
 {
-    private const string modGUID = "x001.MoreCustomization";
-    private const string modName = "MoreCustomization";
+    private const string modGUID = "x001.More Colors";
+    private const string modName = "More Colors";
     private const string modVersion = "1.0.0";
 
     private readonly Harmony harmony = new Harmony(modGUID);

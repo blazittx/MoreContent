@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreContent.csproj": {}
+    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreColors.csproj": {}
   },
   "projects": {
-    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreContent.csproj": {
+    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreColors.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreContent.csproj",
-        "projectName": "MoreContent",
-        "projectPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreContent.csproj",
+        "projectUniqueName": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreColors.csproj",
+        "projectName": "MoreColors",
+        "projectPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreColors.csproj",
         "packagesPath": "C:\\Users\\info\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\obj\\",
+        "outputPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\info\\AppData\\Roaming\\NuGet\\NuGet.Config",

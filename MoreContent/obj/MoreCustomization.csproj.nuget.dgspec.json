@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj": {}
+    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreCustomization.csproj": {}
   },
   "projects": {
-    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj": {
+    "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreCustomization.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
+        "projectUniqueName": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreCustomization.csproj",
         "projectName": "MoreCustomization",
-        "projectPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\MoreCustomization.csproj",
+        "projectPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\MoreCustomization.csproj",
         "packagesPath": "C:\\Users\\info\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreContent\\MoreContent\\obj\\",
+        "outputPath": "C:\\Users\\info\\OneDrive\\Documents\\GitHub\\MoreColors\\MoreColors\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\info\\AppData\\Roaming\\NuGet\\NuGet.Config",

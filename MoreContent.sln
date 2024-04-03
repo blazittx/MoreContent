@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreCustomization", "MoreContent\MoreCustomization.csproj", "{5060AAF6-4744-403C-8544-8C93A8C8ADD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreColors", "MoreColors\MoreColors.csproj", "{5060AAF6-4744-403C-8544-8C93A8C8ADD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
