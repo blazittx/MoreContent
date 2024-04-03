@@ -1,0 +1,8 @@
+# Ignore everything
+*.dll
+
+# But not these files...
+!**/InfiniteColors.dll
+!**/FaceCustomization.dll
+
+

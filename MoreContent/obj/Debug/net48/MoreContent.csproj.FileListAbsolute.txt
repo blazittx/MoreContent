@@ -1,5 +1,0 @@
-C:\Users\info\OneDrive\Documents\GitHub\MoreContent\MoreContent\obj\Debug\net48\MoreContent.csproj.AssemblyReference.cache
-C:\Users\info\OneDrive\Documents\GitHub\MoreContent\MoreContent\obj\Debug\net48\MoreContent.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\info\OneDrive\Documents\GitHub\MoreContent\MoreContent\obj\Debug\net48\MoreContent.AssemblyInfoInputs.cache
-C:\Users\info\OneDrive\Documents\GitHub\MoreContent\MoreContent\obj\Debug\net48\MoreContent.AssemblyInfo.cs
-C:\Users\info\OneDrive\Documents\GitHub\MoreContent\MoreContent\obj\Debug\net48\MoreContent.csproj.CoreCompileInputs.cache
