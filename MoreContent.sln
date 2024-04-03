@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FaceCustomization", "FaceCustomization\FaceCustomization.csproj", "{A62B8F4C-9846-47B1-89EB-421FBF6C544B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfiniteColors", "InfiniteColors\InfiniteColors.csproj", "{7B9EEEDB-576B-4DB8-9664-2554B5195BFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoreCustomization", "MoreContent\MoreCustomization.csproj", "{5060AAF6-4744-403C-8544-8C93A8C8ADD3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A62B8F4C-9846-47B1-89EB-421FBF6C544B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A62B8F4C-9846-47B1-89EB-421FBF6C544B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A62B8F4C-9846-47B1-89EB-421FBF6C544B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A62B8F4C-9846-47B1-89EB-421FBF6C544B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B9EEEDB-576B-4DB8-9664-2554B5195BFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B9EEEDB-576B-4DB8-9664-2554B5195BFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B9EEEDB-576B-4DB8-9664-2554B5195BFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B9EEEDB-576B-4DB8-9664-2554B5195BFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5060AAF6-4744-403C-8544-8C93A8C8ADD3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
