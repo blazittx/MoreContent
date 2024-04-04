@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 
+using Zorro.Core;
+
 
 [BepInPlugin("com.yourdomain.InfiniteColors", "Infinite Colors", "1.0.0")]
 public class Class1 : BaseUnityPlugin
@@ -43,13 +45,13 @@ public class Class1 : BaseUnityPlugin
             containerLayoutGroup.childControlWidth = true;
             containerLayoutGroup.childControlHeight = true;
             containerLayoutGroup.childForceExpandWidth = true;
-            containerLayoutGroup.childForceExpandHeight = false;
+            containerLayoutGroup.childForceExpandHeight = true;
             containerLayoutGroup.spacing = 10; // Add some spacing between sliders
 
             // Create Sliders for R, G, B
             // Adjust these values as needed to make the sliders larger and more visible
             float preferredWidth = 40;
-            float preferredHeight = 300;
+            float preferredHeight = 200;
 
             var redSlider = CreateColorSlider(colorPickerContainer.transform, Color.red, __instance, preferredWidth, preferredHeight);
             var greenSlider = CreateColorSlider(colorPickerContainer.transform, Color.green, __instance, preferredWidth, preferredHeight);
@@ -68,35 +70,42 @@ public class Class1 : BaseUnityPlugin
             Debug.Log("Color pickers have been created and listeners are set.");
         }
 
-
-
-
         private static Slider CreateColorSlider(Transform parent, Color sliderColor, PlayerCustomizer customizer, float preferredWidth, float preferredHeight)
         {
             // Slider GameObject
             GameObject sliderGO = new GameObject($"{sliderColor}Slider", typeof(RectTransform));
             sliderGO.transform.SetParent(parent, false);
 
+
+
+            // Adjusting the RectTransform for visual clarity
+            RectTransform sliderRect = sliderGO.GetComponent<RectTransform>();
+            sliderRect.sizeDelta = new Vector2(preferredWidth, preferredHeight);
+
+            // Add LayoutElement for more precise control over size within HorizontalLayoutGroup
             LayoutElement layoutElement = sliderGO.AddComponent<LayoutElement>();
             layoutElement.preferredWidth = preferredWidth;
             layoutElement.preferredHeight = preferredHeight;
-
-            // Set up the RectTransform for the slider
-            var sliderRect = sliderGO.GetComponent<RectTransform>();
-            sliderRect.sizeDelta = new Vector2(40, 300); // Adjust size as needed
 
 
             // Slider Component
             Slider slider = sliderGO.AddComponent<Slider>();
             slider.minValue = 0;
             slider.maxValue = 1;
-            slider.value = sliderColor == Color.red ? 1f : 0f;
 
-            // Slider visuals - Assuming you have custom sprites for these
-            var bgImage = new GameObject("Background").AddComponent<Image>();
+            // Set initial slider value based on the corresponding color value of headColor
+            if (sliderColor == Color.red)
+                slider.value = customizer.headColor.color.r;
+            else if (sliderColor == Color.green)
+                slider.value = customizer.headColor.color.g;
+            else if (sliderColor == Color.blue)
+                slider.value = customizer.headColor.color.b;
+
+            // Slider Visuals - Ensure the Fill and Handle also match the new size
+            var bgImage = new GameObject("Background", typeof(Image)).GetComponent<Image>();
             bgImage.transform.SetParent(sliderGO.transform, false);
-            bgImage.color = new Color(0.2f, 0.2f, 0.2f); // Darker background for contrast
-            bgImage.rectTransform.sizeDelta = new Vector2(20, 150);
+            bgImage.rectTransform.sizeDelta = new Vector2(preferredWidth, preferredHeight);
+            bgImage.color = new Color(0.2f, 0.2f, 0.2f);
 
             var fillArea = new GameObject("Fill Area").AddComponent<RectTransform>();
             fillArea.SetParent(sliderGO.transform, false);
@@ -124,14 +133,6 @@ public class Class1 : BaseUnityPlugin
             slider.handleRect = handle.GetComponent<RectTransform>();
             slider.targetGraphic = handleImage;
             slider.direction = Slider.Direction.BottomToTop;
-
-            // Determine the slider's initial value based on the headColor
-            if (sliderColor == Color.red)
-                slider.value = customizer.headColor.color.r;
-            else if (sliderColor == Color.green)
-                slider.value = customizer.headColor.color.g;
-            else if (sliderColor == Color.blue)
-                slider.value = customizer.headColor.color.b;
 
             // Additional Styling (Optional)
             // Here you can add shadows, borders, or gradients as needed using additional components.
@@ -228,6 +229,35 @@ public class Class1 : BaseUnityPlugin
                 playerVisor.ApplyVisorColor(newColor);
             }
         }
-
     }
+    // Assuming this method exists in PlayerCustomizer and is responsible for updating the visor color
+    [HarmonyPatch(typeof(PlayerVisor), "ApplyVisorColor")]
+    public class ApplyVisorColorPatch
+    {
+        static bool Prefix(PlayerVisor __instance, Color newColor)
+        {
+            // Convert the color to a format suitable for networking, e.g., a string or separate RGB values
+            __instance.GetComponent<PhotonView>().RPC("SetVisorColor", RpcTarget.AllBuffered, newColor.r, newColor.g, newColor.b);
+
+            // Skip the original method because we've already applied our custom logic
+            return false;
+        }
+    }
+
+    [HarmonyPatch(typeof(PlayerVisor), "SetVisorColor")]
+    public class SetVisorPatch
+    {
+        static bool Prefix(PlayerVisor __instance, float r, float g, float b)
+        {
+            Color newColor = new Color(r, g, b);
+
+            // Wrap the new Color in an Optionable<Color> and assign it.
+            __instance.visorColor = Optionable<Color>.Some(newColor);
+
+            // Return false to skip the execution of the original method.
+            return false;
+        }
+    }
+
+
 }

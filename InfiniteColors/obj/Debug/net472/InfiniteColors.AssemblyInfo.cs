@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("InfiniteColors")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee151ad76b9b4b0045f67a35a340b4921eaa37c7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74f36c0255b9117a0bda69f52263d722593e301a")]
 [assembly: System.Reflection.AssemblyProductAttribute("InfiniteColors")]
 [assembly: System.Reflection.AssemblyTitleAttribute("InfiniteColors")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
