@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FaceCustomization")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee151ad76b9b4b0045f67a35a340b4921eaa37c7")]
 [assembly: System.Reflection.AssemblyProductAttribute("FaceCustomization")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FaceCustomization")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

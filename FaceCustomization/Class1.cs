@@ -217,28 +217,18 @@ public class Class1 : BaseUnityPlugin
                 return false; // Skip original method if there's no player in terminal.
             }
 
-            if (apply)
-            {
-                // Update lastAppliedFaceSize with the current face size when changes are applied
-                lastAppliedFaceSize = __instance.FaceSize;
-            }
-
-            // Here you apply the custom color. Assuming headColor holds the color selected via your custom UI.
+            // Accessing the custom color. Assuming headColor holds the color selected via your custom UI.
             Color customColor = __instance.headColor.color;
 
             if (apply)
             {
                 // Apply the custom color to the visor.
                 __instance.playerInTerminal.refs.visor.ApplyVisorColor(customColor);
-
-                // Save custom color (optional, depends on your implementation).
-                SaveCustomColorToPlayerPrefs(customColor);
-
-                // Assuming there's a mechanism to save other customizations and sync across clients.
-                // Adjust as necessary.
+                // Assuming you have a mechanism to save other customizations and sync across clients.
                 __instance.playerInTerminal.refs.visor.visorFaceText.text = __instance.faceText.text;
-                __instance.playerInTerminal.data.isInCostomizeTerminal = false;
-                // Update any necessary state here...
+
+                lastAppliedFaceSize = __instance.FaceSize;
+
             }
             else
             {
@@ -246,19 +236,16 @@ public class Class1 : BaseUnityPlugin
                 __instance.playerInTerminal.refs.visor.ApplyVisorColor(__instance.headColor.color);
             }
 
+            // This line is moved outside the if (apply) check, so it executes regardless of the apply value.
+            __instance.playerInTerminal.data.isInCostomizeTerminal = false;
+
             __instance.playerInTerminal = null;
 
             // Prevent the original method from executing since we've handled the logic.
             return false;
         }
-
-        private static void SaveCustomColorToPlayerPrefs(Color color)
-        {
-            // Convert color to a savable format (e.g., a string) and save it.
-            PlayerPrefs.SetString("CustomColor", ColorUtility.ToHtmlStringRGBA(color));
-            PlayerPrefs.Save();
-        }
     }
+
 
     // Patch for the RPCA_EnterTerminal method to use lastAppliedFaceSize if available
     [HarmonyPatch(typeof(PlayerCustomizer), "RPCA_EnterTerminal")]
